@@ -32,7 +32,7 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-conn">conn</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-connection">connection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-resultSet">resultSet</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-select">select</a></span></span></li>
 </ul>
@@ -52,7 +52,7 @@ import oracle from &apos;oracledb&apos;
  *   await conn.execute(...)
  * })
  */
-async function conn(opts, fn) {
+async function connection(opts, fn) {
 	let conn
 	try {
 		conn = await oracle.getConnection(opts)
@@ -125,7 +125,7 @@ async function select(conn, sql, bind, opts) {
 	return results
 }
 
-export {conn, resultSet, select}
+export {connection, resultSet, select}
 </code></pre>
 
 </div>

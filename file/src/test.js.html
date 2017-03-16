@@ -32,7 +32,7 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-conn">conn</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-connection">connection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-resultSet">resultSet</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-select">select</a></span></span></li>
 </ul>
@@ -64,7 +64,7 @@ async function main() {
 		password,
 	}
 
-	await witho.conn(DB_CONFIG, async conn =&gt; {
+	await witho.connection(DB_CONFIG, async conn =&gt; {
 		const {rows, metaData} = await conn.select(&apos;SELECT 1 FROM DUAL&apos;)
 		assert.deepEqual(rows, [{&apos;1&apos;: 1}])
 		assert.deepEqual(metaData, [{name: &apos;1&apos;}])

@@ -1,8 +1,8 @@
 window.esdocSearchIndex = [
   [
-    "oracledb-with/src/index.js~conn",
-    "function/index.html#static-function-conn",
-    "<span>conn</span> <span class=\"search-result-import-path\">oracledb-with/src/index.js</span>",
+    "oracledb-with/src/index.js~connection",
+    "function/index.html#static-function-connection",
+    "<span>connection</span> <span class=\"search-result-import-path\">oracledb-with/src/index.js</span>",
     "function"
   ],
   [
