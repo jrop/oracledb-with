@@ -10,7 +10,7 @@ import oracle from 'oracledb'
  *   await conn.execute(...)
  * })
  */
-async function conn(opts, fn) {
+async function connection(opts, fn) {
 	let conn
 	try {
 		conn = await oracle.getConnection(opts)
@@ -83,4 +83,4 @@ async function select(conn, sql, bind, opts) {
 	return results
 }
 
-export {conn, resultSet, select}
+export {connection, resultSet, select}

@@ -22,7 +22,7 @@ async function main() {
 		password,
 	}
 
-	await witho.conn(DB_CONFIG, async conn => {
+	await witho.connection(DB_CONFIG, async conn => {
 		const {rows, metaData} = await conn.select('SELECT 1 FROM DUAL')
 		assert.deepEqual(rows, [{'1': 1}])
 		assert.deepEqual(metaData, [{name: '1'}])
