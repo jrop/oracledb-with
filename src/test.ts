@@ -1,9 +1,8 @@
-/* eslint-disable no-console */
-import assert from 'assert'
-import fs from 'mz/fs'
-import inquirer from 'inquirer'
-import tnsParser from 'tns'
+import * as assert from 'assert'
+import * as fs from 'mz/fs'
+import * as inquirer from 'inquirer'
 import * as witho from './index'
+import tnsParser from 'tns'
 
 async function main() {
 	assert(process.env.TNS_DIR, 'You must define the environment variable TNS_DIR')

@@ -1,5 +1,15 @@
-import co from 'co'
-import oracle from 'oracledb'
+import * as co from 'co'
+import * as oracle from 'oracledb'
+
+export declare interface IConnection extends oracle.IConnection {
+	resultSet(sql: string,
+	          bind: any[]|any,
+	          opts: oracle.IExecuteOptions,
+	          fn: (resultSet: oracle.IResultSet, results: oracle.IExecuteReturn) => any): Promise<any>
+	select(sql: string,
+	       bind?: any[]|any,
+	       opts?: oracle.IExecuteOptions): Promise<oracle.IExecuteReturn>
+}
 
 /**
  * @param {object} opts The options passed directly to `oracledb.getConnection(...)`
@@ -10,12 +20,14 @@ import oracle from 'oracledb'
  *   await conn.execute(...)
  * })
  */
-async function connection(opts, fn) {
-	let conn
+export async function connection(opts, fn: (conn: IConnection) => any): Promise<any> {
+	let conn: IConnection
 	try {
-		conn = await oracle.getConnection(opts)
-		conn.resultSet = (sql, bind, opts, fn) => resultSet(conn, sql, bind, opts, fn)
-		conn.select = (sql, bind, opts, fn) => select(conn, sql, bind, opts, fn)
+		conn = await oracle.getConnection(opts as oracle.IConnectionAttributes) as IConnection
+		conn.resultSet = (sql: string, bind: any[]|any, opts: oracle.IExecuteOptions, fn: () => any) =>
+			resultSet(conn, sql, bind, opts, fn)
+		conn.select = (sql: string, bind: any[]|any, opts: oracle.IExecuteOptions) =>
+			select(conn, sql, bind, opts)
 		return await co.wrap(fn)(conn)
 	} finally {
 		if (conn)
@@ -42,9 +54,13 @@ async function connection(opts, fn) {
  *   })
  * })
  */
-async function resultSet(conn, sql, bind, opts, fn) {
+export async function resultSet(conn: IConnection,
+                                sql: string,
+                                bind: any[]|any,
+                                opts: oracle.IExecuteOptions,
+                                fn: (resultSet: oracle.IResultSet, results: oracle.IExecuteReturn) => any): Promise<any> {
 	opts = Object.assign(opts, {resultSet: true})
-	let results
+	let results: oracle.IExecuteReturn
 	try {
 		results = await conn.execute(sql, bind, opts)
 		return await co.wrap(fn)(results.resultSet, results)
@@ -69,18 +85,17 @@ async function resultSet(conn, sql, bind, opts, fn) {
  * //      ...
  * //    }>
  */
-async function select(conn, sql, bind, opts) {
-	bind = bind || []
-	opts = opts || {outFormat: oracle.OBJECT}
-	const results = await conn.resultSet(sql, bind, opts, async (resultSet, results) => {
-		results.rows = []
+export async function select(conn: IConnection,
+                             sql: string, bind: any[]|any = [],
+                             opts: any = {outFormat: oracle.OBJECT}): Promise<oracle.IExecuteReturn> {
+	const results: oracle.IExecuteReturn = await conn.resultSet(sql, bind, opts, async (resultSet, results) => {
+		const rows = []
 		let row
 		while ((row = await resultSet.getRow()))
-			results.rows.push(row)
+			rows.push(row as any)
+		results.rows = rows
 		return results
 	})
 	delete results.resultSet
 	return results
 }
-
-export {connection, resultSet, select}
