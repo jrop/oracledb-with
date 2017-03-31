@@ -2,10 +2,10 @@ import * as co from 'co'
 import * as oracle from 'oracledb'
 
 export declare interface IConnection extends oracle.IConnection {
-	resultSet(sql: string,
+	resultSet<T>(sql: string,
 	          bind: any[]|any,
 	          opts: oracle.IExecuteOptions,
-	          fn: (resultSet: oracle.IResultSet, results: oracle.IExecuteReturn) => any): Promise<any>
+	          fn: (resultSet: oracle.IResultSet, results: oracle.IExecuteReturn) => T): Promise<T>
 	select(sql: string,
 	       bind?: any[]|any,
 	       opts?: oracle.IExecuteOptions): Promise<oracle.IExecuteReturn>
@@ -20,14 +20,12 @@ export declare interface IConnection extends oracle.IConnection {
  *   await conn.execute(...)
  * })
  */
-export async function connection(opts, fn: (conn: IConnection) => any): Promise<any> {
+export async function connection<T>(opts, fn: (conn: IConnection) => T): Promise<T> {
 	let conn: IConnection
 	try {
 		conn = await oracle.getConnection(opts as oracle.IConnectionAttributes) as IConnection
-		conn.resultSet = (sql: string, bind: any[]|any, opts: oracle.IExecuteOptions, fn: () => any) =>
-			resultSet(conn, sql, bind, opts, fn)
-		conn.select = (sql: string, bind: any[]|any, opts: oracle.IExecuteOptions) =>
-			select(conn, sql, bind, opts)
+		conn.resultSet = (sql, bind, opts, fn) => resultSet(conn, sql, bind, opts, fn)
+		conn.select = (sql, bind, opts) => select(conn, sql, bind, opts)
 		return await co.wrap(fn)(conn)
 	} finally {
 		if (conn)
@@ -54,11 +52,11 @@ export async function connection(opts, fn: (conn: IConnection) => any): Promise<
  *   })
  * })
  */
-export async function resultSet(conn: IConnection,
+export async function resultSet<T>(conn: IConnection,
                                 sql: string,
                                 bind: any[]|any,
                                 opts: oracle.IExecuteOptions,
-                                fn: (resultSet: oracle.IResultSet, results: oracle.IExecuteReturn) => any): Promise<any> {
+                                fn: (resultSet: oracle.IResultSet, results: oracle.IExecuteReturn) => T): Promise<T> {
 	opts = Object.assign(opts, {resultSet: true})
 	let results: oracle.IExecuteReturn
 	try {
