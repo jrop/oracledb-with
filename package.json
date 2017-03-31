@@ -1,6 +1,6 @@
 {
   "name": "oracledb-with",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
@@ -25,6 +25,7 @@
     "oracledb": "~1"
   },
   "files": [
+    "index.d.ts",
     "lib/index.d.ts",
     "lib/index.js"
   ]
