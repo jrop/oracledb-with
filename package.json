@@ -1,38 +1,31 @@
 {
   "name": "oracledb-with",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
-    "prepublish": "pkgbuild",
-    "test": "pkgbuild && node lib/test.js",
-    "pkg://main": "babel src/ -d lib/",
-    "pkg://esdoc": "esdoc -c esdoc.json",
-    "pkg*://main": "babel -w src/ -d lib/"
+    "doc": "tsc --target es2017 --module es2015 --moduleResolution node && esdoc",
+    "prepublish": "tsc",
+    "test": "tsc && node lib/test.js"
   },
   "dependencies": {
     "co": "^4.6.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.0",
-    "babel-eslint": "^7.1.1",
-    "babel-preset-env": "^1.2.2",
+    "@types/node": "^7.0.12",
+    "@types/oracledb": "^1.11.33",
     "esdoc": "^0.5.2",
-    "eslint": "^3.17.1",
-    "eslint-config-jrop": "^0.0.1",
     "inquirer": "^3.0.6",
     "mz": "^2.6.0",
     "oracledb": "^1.13.0",
-    "pkgbuild": "^0.0.4",
-    "tns": "^0.1.0"
+    "tns": "^0.1.0",
+    "typescript": "^2.2.2"
   },
   "peerDependencies": {
     "oracledb": "~1"
   },
-  "eslintConfig": {
-    "extends": [
-      "jrop",
-      "jrop/babel"
-    ]
-  }
+  "files": [
+    "lib/index.d.ts",
+    "lib/index.js"
+  ]
 }

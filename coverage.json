@@ -3,7 +3,7 @@
   "expectCount": 3,
   "actualCount": 3,
   "files": {
-    "src/index.js": {
+    "lib/index.js": {
       "expectCount": 3,
       "actualCount": 3,
       "undocumentLines": []

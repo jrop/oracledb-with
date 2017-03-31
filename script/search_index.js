@@ -1,20 +1,20 @@
 window.esdocSearchIndex = [
   [
-    "oracledb-with/src/index.js~connection",
+    "oracledb-with~connection",
     "function/index.html#static-function-connection",
-    "<span>connection</span> <span class=\"search-result-import-path\">oracledb-with/src/index.js</span>",
+    "<span>connection</span> <span class=\"search-result-import-path\">oracledb-with</span>",
     "function"
   ],
   [
-    "oracledb-with/src/index.js~resultset",
+    "oracledb-with~resultset",
     "function/index.html#static-function-resultSet",
-    "<span>resultSet</span> <span class=\"search-result-import-path\">oracledb-with/src/index.js</span>",
+    "<span>resultSet</span> <span class=\"search-result-import-path\">oracledb-with</span>",
     "function"
   ],
   [
-    "oracledb-with/src/index.js~select",
+    "oracledb-with~select",
     "function/index.html#static-function-select",
-    "<span>select</span> <span class=\"search-result-import-path\">oracledb-with/src/index.js</span>",
+    "<span>select</span> <span class=\"search-result-import-path\">oracledb-with</span>",
     "function"
   ],
   [
@@ -348,15 +348,15 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "src/index.js",
-    "file/src/index.js.html",
-    "src/index.js",
+    "lib/index.js",
+    "file/lib/index.js.html",
+    "lib/index.js",
     "file"
   ],
   [
-    "src/test.js",
-    "file/src/test.js.html",
-    "src/test.js",
+    "lib/test.js",
+    "file/lib/test.js.html",
+    "lib/test.js",
     "file"
   ]
 ]
