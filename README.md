@@ -1,5 +1,7 @@
 # oracledb-with
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/jrop/oracledb-with.svg)](https://greenkeeper.io/)
+
 A simple resource management utility for working with [node-oracledb](https://github.com/oracle/node-oracledb).
 
 ## Installation
