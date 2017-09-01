@@ -12,9 +12,9 @@
     "co": "^4.6.0"
   },
   "devDependencies": {
-    "@types/node": "^7.0.12",
+    "@types/node": "^8.0.26",
     "@types/oracledb": "^1.11.33",
-    "esdoc": "^0.5.2",
+    "esdoc": "^1.0.1",
     "inquirer": "^3.0.6",
     "mz": "^2.6.0",
     "oracledb": "^1.13.0",
